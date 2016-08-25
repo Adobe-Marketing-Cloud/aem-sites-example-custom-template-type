@@ -1,0 +1,1 @@
+# aem-sites-extension-custom-template-type
