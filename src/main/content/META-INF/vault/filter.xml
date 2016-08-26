@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/extensions/custom-template-type"/>
+    <filter root="/conf/custom-template-type/settings/wcm"/>
+    <filter root="/etc/clientlibs/extensions/custom-template-type"/>
+    <filter root="/etc/designs/extensions/custom-template-type"/>
+</workspaceFilter>
