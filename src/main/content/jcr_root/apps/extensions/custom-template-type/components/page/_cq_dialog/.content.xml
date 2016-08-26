@@ -28,19 +28,33 @@
                                         fieldLabel="URL"
                                         name="./ogUrl"
                                         renderReadOnly="{Boolean}true"/>
+                                    <app-id
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        cq-msm-lockable="ogAppId"
+                                        fieldLabel="App Id"
+                                        name="./ogAppId"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <site-name
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        cq-msm-lockable="ogSiteName"
+                                        fieldLabel="Site Name"
+                                        name="./ogSiteName"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <title
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        cq-msm-lockable="ogTitle"
+                                        fieldLabel="Page Title"
+                                        name="./ogTitle"
+                                        renderReadOnly="{Boolean}true"/>
                                     <type
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         cq-msm-lockable="ogType"
                                         fieldLabel="Type"
                                         name="./ogType"
-                                        renderReadOnly="{Boolean}true"/>
-                                    <title
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        cq-msm-lockable="ogTitle"
-                                        fieldLabel="Title"
-                                        name="./ogTitle"
                                         renderReadOnly="{Boolean}true"/>
                                     <description
                                         jcr:primaryType="nt:unstructured"
