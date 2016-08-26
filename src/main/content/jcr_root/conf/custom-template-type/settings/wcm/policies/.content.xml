@@ -64,7 +64,7 @@
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Custom Template Type Media"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="[/libs/wcm/foundation/components/image,/libs/foundation/components/video]"
+                        components="[/libs/wcm/foundation/components/image,/libs/wcm/foundation/components/text,/libs/foundation/components/video]"
                         policyResourceType="wcm/foundation/components/responsivegrid">
                         <cq:authoring jcr:primaryType="nt:unstructured">
                             <assetToComponentMapping jcr:primaryType="nt:unstructured">

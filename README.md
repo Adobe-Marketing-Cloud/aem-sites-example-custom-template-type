@@ -1,9 +1,28 @@
-# Adobe AEM 6.2.1 - Update pack extension: Editable template - Template Type
+# Adobe AEM 6.2 - Update pack extension: Editable template - Template Type
 
-This is a sample package providing content illustrating the creation of a custom template type.
+The current repository contains a sample _content-package_ providing a content structure illustrating the creation of a custom template type.
 
-The package is designed to work with AEM 6.2.1 update pack.
+## Description:
 
+The current content package provides:
+
+* a custom page component with 
+    * extra open graph meta tags with dynamic values
+    * extra tab on the page properties dialog for editing open graph values
+    * a base client library hook to add mandatory stylesheet and scripts
+* a dedicated _/conf_ directory named _custom-template-type_
+* a custom template type which
+    * make use of the previous page component
+* a suite of policies that
+    * carry an example of configuration for the mapping of asset to component
+    * different list of allowed components
+    * a default page client library category hook
+
+This package is designed to work with AEM 6.2 SP1 update pack.
+
+## References
+
+* [AEM Documentation: Editable Templates](https://docs.adobe.com/docs/en/aem/6-2/develop/templates/page-templates-editable.html)
 
 ## Build & Install
  
