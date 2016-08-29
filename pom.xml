@@ -27,16 +27,10 @@
     </prerequisites>
 
     <properties>
-        <crx.host>localhost</crx.host>
-        <crx.port>4502</crx.port>
-        <crx.username>admin</crx.username>
-        <crx.password>admin</crx.password>
-        <publish.crx.host>localhost</publish.crx.host>
-        <publish.crx.port>4503</publish.crx.port>
-        <publish.crx.username>admin</publish.crx.username>
-        <publish.crx.password>admin</publish.crx.password>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <aem.host>localhost</aem.host>
+        <aem.port>4502</aem.port>
+        <aem.publish.host>localhost</aem.publish.host>
+        <aem.publish.port>4503</aem.publish.port>
     </properties>
 
     <!--
@@ -74,26 +68,41 @@
         </resources>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
+                <!-- ensure that the empty directories are copied -->
                 <configuration>
                     <includeEmptyDirs>true</includeEmptyDirs>
                 </configuration>
+
+                <executions>
+                    <execution>
+                        <id>copy-metainf-vault-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/vault-work/META-INF</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/META-INF</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
                 <groupId>com.day.jcr.vault</groupId>
                 <artifactId>content-package-maven-plugin</artifactId>
-                <version>0.0.20</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <group>aem/demo</group>
-                    <filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
-                    <targetURL>http://${crx.host}:${crx.port}/crx/packmgr/service.jsp</targetURL>
+                    <filterSource>${basedir}/META-INF/vault/filter.xml</filterSource>
+                    <verbose>true</verbose>
                     <failOnError>true</failOnError>
-                    <username>${crx.username}</username>
-                    <password>${crx.password}</password>
+                    <group>adobe/aem6/sample</group>
                 </configuration>
             </plugin>
         </plugins>
@@ -102,26 +111,44 @@
     <profiles>
         <profile>
             <id>autoInstallPackage</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>com.day.jcr.vault</groupId>
                         <artifactId>content-package-maven-plugin</artifactId>
+                        <extensions>true</extensions>
                         <executions>
                             <execution>
-                                <id>install-content-package</id>
-                                <phase>install</phase>
+                                <id>install-package</id>
                                 <goals>
                                     <goal>install</goal>
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <targetURL>http://${aem.host}:${aem.port}/crx/packmgr/service.jsp</targetURL>
+                            <failOnError>true</failOnError>
+                            <failOnMissingEmbed>true</failOnMissingEmbed>
+                            <requiresRoot>true</requiresRoot>
+                            <properties>
+                                <acHandling>merge</acHandling>
+                                <description>${project.description}</description>
+                                <createdBy>Adobe Systems Incorporated</createdBy>
+                            </properties>
+                            <filterSource>${basedir}/META-INF/vault/filter.xml</filterSource>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
         <profile>
             <id>autoInstallPackagePublish</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -129,18 +156,17 @@
                         <artifactId>content-package-maven-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>install-content-package-publish</id>
-                                <phase>install</phase>
+                                <id>install-package</id>
                                 <goals>
                                     <goal>install</goal>
                                 </goals>
-                                <configuration>
-                                    <targetURL>http://${publish.crx.host}:${publish.crx.port}/crx/packmgr/service.jsp</targetURL>
-                                    <username>${publish.crx.username}</username>
-                                    <password>${publish.crx.password}</password>
-                                </configuration>
                             </execution>
                         </executions>
+                        <configuration>
+                            <targetURL>http://${aem.publish.host}:${aem.publish.port}/crx/packmgr/service.jsp</targetURL>
+                            <failOnError>true</failOnError>
+                            <failOnMissingEmbed>true</failOnMissingEmbed>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>

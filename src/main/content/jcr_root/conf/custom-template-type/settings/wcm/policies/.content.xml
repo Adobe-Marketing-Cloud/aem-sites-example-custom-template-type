@@ -3,6 +3,7 @@
     xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
     jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:Page">
+    <rep:policy/>
     <wcm jcr:primaryType="nt:unstructured">
         <foundation jcr:primaryType="nt:unstructured">
             <components jcr:primaryType="nt:unstructured">
@@ -14,8 +15,7 @@
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Custom Template Type Default"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="[group:General]"
-                        policyResourceType="wcm/foundation/components/responsivegrid">
+                        components="[group:General]">
                         <cq:authoring jcr:primaryType="nt:unstructured">
                             <assetToComponentMapping jcr:primaryType="nt:unstructured">
                                 <image jcr:primaryType="nt:unstructured"
@@ -64,8 +64,7 @@
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Custom Template Type Media"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="[/libs/wcm/foundation/components/image,/libs/wcm/foundation/components/text,/libs/foundation/components/video]"
-                        policyResourceType="wcm/foundation/components/responsivegrid">
+                        components="[/libs/wcm/foundation/components/image,/libs/wcm/foundation/components/text,/libs/foundation/components/video]">
                         <cq:authoring jcr:primaryType="nt:unstructured">
                             <assetToComponentMapping jcr:primaryType="nt:unstructured">
                                 <image jcr:primaryType="nt:unstructured"
