@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.adobe.aem.demo</groupId>
-    <artifactId>com.adobe.aem.demo.authoring.ext.template-type</artifactId>
+    <artifactId>com.adobe.aem.demo.authoring.example.template-type</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>content-package</packaging>
 
-    <name>Adobe AEM 6.2 - Update pack extension: Editable template - Template Type</name>
+    <name>Adobe AEM 6.2 - Example package for: Editable template - Template Type</name>
 
     <inceptionYear>2016</inceptionYear>
     <licenses>
