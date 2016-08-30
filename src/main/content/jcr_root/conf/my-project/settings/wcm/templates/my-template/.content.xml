@@ -4,6 +4,6 @@
     <jcr:content
         jcr:description="My Project Template"
         jcr:primaryType="cq:PageContent"
-        jcr:title="My Project"
+        jcr:title="My Template"
         status="enabled"/>
 </jcr:root>
