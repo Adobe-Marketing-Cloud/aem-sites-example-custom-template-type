@@ -28,7 +28,9 @@ This package is designed to work with AEM 6.2 SP1 update pack.
  
 This project uses Maven for building. Common commands:
 
-From the project directory, run ``mvn clean install content-package:install`` to build the bundle and content package and install to a CQ instance.
+From the project directory, run ``mvn clean install -PautoInstallPackage`` to build the bundle and content package and install those to a running CQ instance.
+
+_Avoid running the following command line ``mvn clean install content-package:install`` as it doesn't install the necessary permissions_
 
 ## Using with VLT
 
