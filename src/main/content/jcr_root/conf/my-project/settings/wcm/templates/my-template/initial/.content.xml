@@ -3,6 +3,7 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         jcr:primaryType="cq:PageContent"
+        cq:template="/conf/my-project/settings/wcm/templates/my-template"
         sling:resourceType="my-project/components/page">
         <root
             jcr:primaryType="nt:unstructured"
