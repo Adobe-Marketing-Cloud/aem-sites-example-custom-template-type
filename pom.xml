@@ -42,7 +42,7 @@
         <repository>
             <id>adobe</id>
             <name>Adobe Public Repository</name>
-            <url>http://repo.adobe.com/nexus/content/groups/public/</url>
+            <url>https://repo.adobe.com/nexus/content/groups/public/</url>
             <layout>default</layout>
         </repository>
     </repositories>
@@ -50,7 +50,7 @@
         <pluginRepository>
             <id>adobe</id>
             <name>Adobe Public Repository</name>
-            <url>http://repo.adobe.com/nexus/content/groups/public/</url>
+            <url>https://repo.adobe.com/nexus/content/groups/public/</url>
             <layout>default</layout>
         </pluginRepository>
     </pluginRepositories>
@@ -68,7 +68,9 @@
         </resources>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
                 <!-- ensure that the empty directories are copied -->
                 <configuration>
                     <includeEmptyDirs>true</includeEmptyDirs>
@@ -95,14 +97,27 @@
             </plugin>
 
             <plugin>
-                <groupId>com.day.jcr.vault</groupId>
-                <artifactId>content-package-maven-plugin</artifactId>
+                <groupId>org.apache.jackrabbit</groupId>
+                <artifactId>filevault-package-maven-plugin</artifactId>
+                <version>1.0.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <filterSource>${basedir}/META-INF/vault/filter.xml</filterSource>
+                    <group>adobe/aem6/sample</group>
+                    <filterSource>${basedir}/src/main/content/META-INF/vault/filter.xml</filterSource>
+                    <properties>
+                        <acHandling>merge_preserve</acHandling>
+                    </properties>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
+                <version>1.0.2</version>
+                <extensions>true</extensions>
+                <configuration>
                     <verbose>true</verbose>
                     <failOnError>true</failOnError>
-                    <group>adobe/aem6/sample</group>
                 </configuration>
             </plugin>
         </plugins>
@@ -131,14 +146,6 @@
                         <configuration>
                             <targetURL>http://${aem.host}:${aem.port}/crx/packmgr/service.jsp</targetURL>
                             <failOnError>true</failOnError>
-                            <failOnMissingEmbed>true</failOnMissingEmbed>
-                            <requiresRoot>true</requiresRoot>
-                            <properties>
-                                <acHandling>merge</acHandling>
-                                <description>${project.description}</description>
-                                <createdBy>Adobe Systems Incorporated</createdBy>
-                            </properties>
-                            <filterSource>${basedir}/META-INF/vault/filter.xml</filterSource>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -165,7 +172,6 @@
                         <configuration>
                             <targetURL>http://${aem.publish.host}:${aem.publish.port}/crx/packmgr/service.jsp</targetURL>
                             <failOnError>true</failOnError>
-                            <failOnMissingEmbed>true</failOnMissingEmbed>
                         </configuration>
                     </plugin>
                 </plugins>
